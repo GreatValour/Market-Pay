@@ -128,14 +128,25 @@
     }
 
     .cards-container {
-        display: flex;
-    }
-
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px;
+        }
     .action:hover {
         background-color: rgb(8, 7, 7);
         /* Hover color */
         color: rgba(17, 24, 39, 1);
     }
+
+    .hidden{
+        display: none;
+    }
+    @media only screen and (max-width: 600px) {
+            .card {
+                width: 100%; /* Set full width on small screens */
+            }
+        }
 </style>
 
 <body data-zs-home="true" data-zs-subsite="" data-zs-display-mode="default">
@@ -313,76 +324,75 @@
 
                             </div>
 
-                            <div class="card">
-                                <div class="header">
-                                    <span class="price">Finance Intern</span>
+                            <div class="hidden">
+                                <div class="card">
+                                    <div class="header">
+                                        <span class="price">Finance Intern</span>
+                                    </div>
+                                    <ul class="lists">
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Overview</span>
+                                        </li>
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Responsibilities</span>
+                                        </li>
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Qualifications & Benefits</span>
+                                        </li>
+                                    </ul>
+                                    <a href="your-link-here">
+                                        <button type="button" class="action">Learn MOre</button>
+                                    </a>
                                 </div>
-                                <ul class="lists">
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Overview</span>
-                                    </li>
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Responsibilities</span>
-                                    </li>
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Qualifications & Benefits</span>
-                                    </li>
-                                </ul>
-                                <a href="your-link-here">
-                                    <button type="button" class="action">Learn MOre</button>
-                                </a>
-
-                            </div>
-
-                            <div class="card">
-                                <div class="header">
-                                    <span class="price">Finance Intern</span>
+                                <div class="card">
+                                    <div class="header">
+                                        <span class="price">Finance Intern</span>
+                                    </div>
+                                    <ul class="lists">
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Overview</span>
+                                        </li>
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Responsibilities</span>
+                                        </li>
+                                        <li class="list">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            <span>Qualifications & Benefits</span>
+                                        </li>
+                                    </ul>
+                                    <a href="your-link-here">
+                                        <button type="button" class="action">Learn More</button>
+                                    </a>
                                 </div>
-                                <ul class="lists">
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Overview</span>
-                                    </li>
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Responsibilities</span>
-                                    </li>
-                                    <li class="list">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span>Qualifications & Benefits</span>
-                                    </li>
-                                </ul>
-                                <a href="your-link-here">
-                                    <button type="button" class="action">Learn More</button>
-                                </a>
-
                             </div>
                         </div>
 
